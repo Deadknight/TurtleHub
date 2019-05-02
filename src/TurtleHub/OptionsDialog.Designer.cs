@@ -55,37 +55,61 @@
             // label1
             // 
             label1.AutoSize = true;
-            label1.Location = new System.Drawing.Point(12, 45);
+            label1.Location = new System.Drawing.Point(16, 55);
+            label1.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             label1.Name = "label1";
-            label1.Size = new System.Drawing.Size(41, 13);
+            label1.Size = new System.Drawing.Size(53, 17);
             label1.TabIndex = 4;
             label1.Text = "Owner:";
             // 
             // label2
             // 
             label2.AutoSize = true;
-            label2.Location = new System.Drawing.Point(12, 71);
+            label2.Location = new System.Drawing.Point(16, 87);
+            label2.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             label2.Name = "label2";
-            label2.Size = new System.Drawing.Size(60, 13);
+            label2.Size = new System.Drawing.Size(80, 17);
             label2.TabIndex = 5;
             label2.Text = "Repository:";
             // 
             // label3
             // 
             label3.AutoSize = true;
-            label3.Location = new System.Drawing.Point(12, 97);
+            label3.Location = new System.Drawing.Point(16, 119);
+            label3.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             label3.Name = "label3";
-            label3.Size = new System.Drawing.Size(51, 13);
+            label3.Size = new System.Drawing.Size(66, 17);
             label3.TabIndex = 9;
             label3.Text = "Keyword:";
+            // 
+            // label4
+            // 
+            label4.AutoSize = true;
+            label4.Location = new System.Drawing.Point(16, 22);
+            label4.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            label4.Name = "label4";
+            label4.Size = new System.Drawing.Size(61, 17);
+            label4.TabIndex = 14;
+            label4.Text = "Tracker:";
+            // 
+            // label5
+            // 
+            label5.AutoSize = true;
+            label5.Location = new System.Drawing.Point(16, 153);
+            label5.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            label5.Name = "label5";
+            label5.Size = new System.Drawing.Size(77, 17);
+            label5.TabIndex = 16;
+            label5.Text = "API Token:";
             // 
             // BtnOk
             // 
             this.BtnOk.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.BtnOk.DialogResult = System.Windows.Forms.DialogResult.OK;
-            this.BtnOk.Location = new System.Drawing.Point(210, 256);
+            this.BtnOk.Location = new System.Drawing.Point(280, 315);
+            this.BtnOk.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.BtnOk.Name = "BtnOk";
-            this.BtnOk.Size = new System.Drawing.Size(75, 23);
+            this.BtnOk.Size = new System.Drawing.Size(100, 28);
             this.BtnOk.TabIndex = 3;
             this.BtnOk.Text = "OK";
             this.BtnOk.UseVisualStyleBackColor = true;
@@ -94,9 +118,10 @@
             // 
             this.BtnCancel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.BtnCancel.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-            this.BtnCancel.Location = new System.Drawing.Point(291, 256);
+            this.BtnCancel.Location = new System.Drawing.Point(388, 315);
+            this.BtnCancel.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.BtnCancel.Name = "BtnCancel";
-            this.BtnCancel.Size = new System.Drawing.Size(75, 23);
+            this.BtnCancel.Size = new System.Drawing.Size(100, 28);
             this.BtnCancel.TabIndex = 4;
             this.BtnCancel.Text = "Cancel";
             this.BtnCancel.UseVisualStyleBackColor = true;
@@ -105,9 +130,10 @@
             // 
             this.TxtOwner.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.TxtOwner.Location = new System.Drawing.Point(78, 42);
+            this.TxtOwner.Location = new System.Drawing.Point(104, 52);
+            this.TxtOwner.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.TxtOwner.Name = "TxtOwner";
-            this.TxtOwner.Size = new System.Drawing.Size(288, 20);
+            this.TxtOwner.Size = new System.Drawing.Size(383, 22);
             this.TxtOwner.TabIndex = 0;
             this.TxtOwner.TextChanged += new System.EventHandler(this.TxtOwner_TextChanged);
             // 
@@ -117,9 +143,10 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.TxtRepository.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.Suggest;
             this.TxtRepository.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.CustomSource;
-            this.TxtRepository.Location = new System.Drawing.Point(78, 68);
+            this.TxtRepository.Location = new System.Drawing.Point(104, 84);
+            this.TxtRepository.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.TxtRepository.Name = "TxtRepository";
-            this.TxtRepository.Size = new System.Drawing.Size(288, 20);
+            this.TxtRepository.Size = new System.Drawing.Size(383, 22);
             this.TxtRepository.TabIndex = 1;
             this.TxtRepository.TextChanged += new System.EventHandler(this.TxtRepository_TextChanged);
             this.TxtRepository.Enter += new System.EventHandler(this.TxtRepository_Enter);
@@ -141,18 +168,20 @@
             "Resolves",
             "Resolved",
             "<None>"});
-            this.CmbKeyword.Location = new System.Drawing.Point(78, 94);
+            this.CmbKeyword.Location = new System.Drawing.Point(104, 116);
+            this.CmbKeyword.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.CmbKeyword.Name = "CmbKeyword";
-            this.CmbKeyword.Size = new System.Drawing.Size(288, 21);
+            this.CmbKeyword.Size = new System.Drawing.Size(383, 24);
             this.CmbKeyword.TabIndex = 2;
             this.CmbKeyword.SelectedIndexChanged += new System.EventHandler(this.CmbKeyword_SelectedIndexChanged);
             // 
             // CheckRefFullRepo
             // 
             this.CheckRefFullRepo.AutoSize = true;
-            this.CheckRefFullRepo.Location = new System.Drawing.Point(78, 147);
+            this.CheckRefFullRepo.Location = new System.Drawing.Point(104, 181);
+            this.CheckRefFullRepo.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.CheckRefFullRepo.Name = "CheckRefFullRepo";
-            this.CheckRefFullRepo.Size = new System.Drawing.Size(179, 17);
+            this.CheckRefFullRepo.Size = new System.Drawing.Size(235, 21);
             this.CheckRefFullRepo.TabIndex = 10;
             this.CheckRefFullRepo.Text = "Reference Full Repository Name";
             this.CheckRefFullRepo.UseVisualStyleBackColor = true;
@@ -163,9 +192,11 @@
             this.groupBox1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.groupBox1.Controls.Add(this.TxtPreview);
-            this.groupBox1.Location = new System.Drawing.Point(13, 201);
+            this.groupBox1.Location = new System.Drawing.Point(17, 247);
+            this.groupBox1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(353, 44);
+            this.groupBox1.Padding = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.groupBox1.Size = new System.Drawing.Size(471, 54);
             this.groupBox1.TabIndex = 11;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Example Message";
@@ -174,31 +205,24 @@
             // 
             this.TxtPreview.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.TxtPreview.Font = new System.Drawing.Font("Courier New", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.TxtPreview.Location = new System.Drawing.Point(6, 19);
+            this.TxtPreview.Location = new System.Drawing.Point(8, 23);
+            this.TxtPreview.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.TxtPreview.Name = "TxtPreview";
             this.TxtPreview.ReadOnly = true;
-            this.TxtPreview.Size = new System.Drawing.Size(341, 13);
+            this.TxtPreview.Size = new System.Drawing.Size(455, 16);
             this.TxtPreview.TabIndex = 0;
             this.TxtPreview.Text = "Closes #5";
             // 
             // CheckShowPrs
             // 
             this.CheckShowPrs.AutoSize = true;
-            this.CheckShowPrs.Location = new System.Drawing.Point(78, 170);
+            this.CheckShowPrs.Location = new System.Drawing.Point(104, 209);
+            this.CheckShowPrs.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.CheckShowPrs.Name = "CheckShowPrs";
-            this.CheckShowPrs.Size = new System.Drawing.Size(172, 17);
+            this.CheckShowPrs.Size = new System.Drawing.Size(223, 21);
             this.CheckShowPrs.TabIndex = 12;
             this.CheckShowPrs.Text = "Show Pull Requests by Default";
             this.CheckShowPrs.UseVisualStyleBackColor = true;
-            // 
-            // label4
-            // 
-            label4.AutoSize = true;
-            label4.Location = new System.Drawing.Point(12, 18);
-            label4.Name = "label4";
-            label4.Size = new System.Drawing.Size(47, 13);
-            label4.TabIndex = 14;
-            label4.Text = "Tracker:";
             // 
             // CmbTracker
             // 
@@ -209,9 +233,10 @@
             "GitHub",
             "http://gitlab.com",
             "http://"});
-            this.CmbTracker.Location = new System.Drawing.Point(78, 15);
+            this.CmbTracker.Location = new System.Drawing.Point(104, 18);
+            this.CmbTracker.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.CmbTracker.Name = "CmbTracker";
-            this.CmbTracker.Size = new System.Drawing.Size(288, 21);
+            this.CmbTracker.Size = new System.Drawing.Size(383, 24);
             this.CmbTracker.TabIndex = 13;
             // 
             // TxtAPIToken
@@ -220,27 +245,19 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.TxtAPIToken.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.Suggest;
             this.TxtAPIToken.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.CustomSource;
-            this.TxtAPIToken.Location = new System.Drawing.Point(78, 121);
+            this.TxtAPIToken.Location = new System.Drawing.Point(104, 149);
+            this.TxtAPIToken.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.TxtAPIToken.Name = "TxtAPIToken";
-            this.TxtAPIToken.Size = new System.Drawing.Size(288, 20);
+            this.TxtAPIToken.Size = new System.Drawing.Size(383, 22);
             this.TxtAPIToken.TabIndex = 15;
-            // 
-            // label5
-            // 
-            label5.AutoSize = true;
-            label5.Location = new System.Drawing.Point(12, 124);
-            label5.Name = "label5";
-            label5.Size = new System.Drawing.Size(61, 13);
-            label5.TabIndex = 16;
-            label5.Text = "API Token:";
             // 
             // OptionsDialog
             // 
             this.AcceptButton = this.BtnOk;
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.CancelButton = this.BtnCancel;
-            this.ClientSize = new System.Drawing.Size(375, 291);
+            this.ClientSize = new System.Drawing.Size(500, 358);
             this.Controls.Add(this.TxtAPIToken);
             this.Controls.Add(label5);
             this.Controls.Add(label4);
@@ -257,6 +274,7 @@
             this.Controls.Add(this.BtnCancel);
             this.Controls.Add(this.BtnOk);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow;
+            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.Name = "OptionsDialog";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Repository Settings";

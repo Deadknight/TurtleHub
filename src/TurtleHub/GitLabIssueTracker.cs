@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -14,6 +15,7 @@ namespace TurtleHub
 
         public GitLabIssueTracker(Parameters parameters)
         {
+            ServicePointManager.SecurityProtocol = SecurityProtocolType.Tls12;
             this.parameters = parameters;
             client = new GitLabClient(parameters.Tracker, parameters.APIToken);
         }
@@ -22,20 +24,23 @@ namespace TurtleHub
         {
             var issues = new List<TurtleIssue>();
             int projectIdNumber = 0;
-            string projectId = String.Format("{0}/{1}", parameters.Owner, parameters.Repository);
+            //string projectId = String.Format("{0}/{1}", parameters.Owner, parameters.Repository);
+            string projectId = parameters.Repository;
             try
             {
                 // Try to find the internal id because getting issues with project name group/project looks bugged
-                var projects = await client.Projects.GetAsync(o => o.UserId = parameters.Owner);
-                var project = projects.Where(p => p.Name == parameters.Repository).FirstOrDefault();
+                var projects = await client.Projects.GetAsync();
+                var project = projects.Where(p => p.Name == parameters.Repository || p.Namespace.ToString() == parameters.Repository).FirstOrDefault();
                 if (project != null)
                 {
                     projectIdNumber = project.Id;
                     projectId = project.Id.ToString();
                 }
             }
-            catch(GitLabException)
-            { }
+            catch(Exception ex)
+            {
+                Console.WriteLine(ex.ToString());
+            }
 
             var glissues = await client.Issues.GetAsync(projectId);
             foreach (var glissue in glissues)
@@ -74,10 +79,12 @@ namespace TurtleHub
         {
             return new TurtleIssue()
             {
-                Number = issue.Id,
+                Number = issue.Iid,
                 Title = issue.Title,
                 Creator = issue.Author?.Username,
-                Assignee = issue.Assignee?.Username,
+                Assignee = issue.Assignee == null ? "" : issue.Assignee.Username,
+                Labels = (issue.Labels == null || issue.Labels.Count == 0) ? "" : String.Join(",", issue.Labels),
+                Milestone = issue.Milestone == null ? "" : issue.Milestone.Title,
                 IsPullRequest = false,
                 HtmlUrl = issue.WebUrl
             };
@@ -87,10 +94,12 @@ namespace TurtleHub
         {
             return new TurtleIssue()
             {
-                Number = pr.Id,
+                Number = pr.Iid,
                 Title = pr.Title,
                 Creator = pr.Author?.Username,
                 Assignee = pr.Assignee?.Username,
+                Labels = "",
+                Milestone = "",
                 IsPullRequest = true,
                 HtmlUrl = pr.WebUrl
             };

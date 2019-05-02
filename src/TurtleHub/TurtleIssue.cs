@@ -16,6 +16,10 @@ namespace TurtleHub
 
         public string Assignee { get; set; }
 
+        public string Labels { get; set; }
+
+        public string Milestone { get; set; }
+
         public string HtmlUrl { get; set; }
 
         public bool IsPullRequest { get; set; }

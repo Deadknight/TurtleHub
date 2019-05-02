@@ -26,6 +26,7 @@ using System.Diagnostics;
 
 using BrightIdeasSoftware;
 using System.Threading.Tasks;
+using TurtleHub.Properties;
 
 namespace TurtleHub
 {
@@ -58,9 +59,15 @@ namespace TurtleHub
             issuelistview.GetColumn(1).AspectGetter = delegate(TurtleIssue x) { return x.Title; };
             issuelistview.GetColumn(2).AspectGetter = delegate(TurtleIssue x) { return x.Creator; };
             issuelistview.GetColumn(3).AspectGetter = delegate(TurtleIssue x) { return x.Assignee; };
+            issuelistview.GetColumn(4).AspectGetter = delegate (TurtleIssue x) { return x.Labels; };
+            issuelistview.GetColumn(5).AspectGetter = delegate (TurtleIssue x) { return x.Milestone; };
 
             // Start the tracker magic
             tracker = IssueTrackerFactory.CreateIssueTracker(parameters);
+
+            CbOpened.Text = Settings.Default.LastOpened;
+            CbAssigned.Text = Settings.Default.LastAssignee;
+            CbMilestone.Text = Settings.Default.LastMilestone;
         }
 
         private async Task MakeIssuesRequest()
@@ -77,6 +84,12 @@ namespace TurtleHub
                 objectListView1.AddObjects(issues.ToArray());
                 objectListView1.UseFiltering = true;
                 objectListView1.FullRowSelect = true; // appearantly this is important to do
+                CbOpened.Items.Add("");
+                CbOpened.Items.AddRange(issues.Select(o => o.Creator).Distinct().ToArray());
+                CbAssigned.Items.Add("");
+                CbAssigned.Items.AddRange(issues.Select(o => o.Assignee).Distinct().ToArray());
+                CbMilestone.Items.Add("");
+                CbMilestone.Items.AddRange(issues.Select(o => o.Milestone).Distinct().ToArray());
                 ShowIssues();
 
             }
@@ -121,6 +134,15 @@ namespace TurtleHub
         {
             // Create a new filter based on the searchbox
             var tmfilter = TextMatchFilter.Contains(objectListView1, TxtSearch.Text);
+            tmfilter.Columns = new[] { olvColumn1, olvColumn2 };
+            var openedfilter = TextMatchFilter.Contains(objectListView1, CbOpened.Text);
+            openedfilter.Columns = new[] { olvColumn3 };
+            var assignedfilter = TextMatchFilter.Contains(objectListView1, CbAssigned.Text);
+            assignedfilter.Columns = new[] { olvColumn4 };
+            var labelFilter = TextMatchFilter.Contains(objectListView1, TxtLabels.Text);
+            labelFilter.Columns = new[] { olvColumn5 };
+            var milestoneFilter = TextMatchFilter.Contains(objectListView1, CbMilestone.Text);
+            milestoneFilter.Columns = new[] { olvColumn6 };
 
             ModelFilter prfilter;
             if (checkBoxShowPrs.Checked == true)
@@ -133,10 +155,12 @@ namespace TurtleHub
                 // Filter out pull requests
                 prfilter = new ModelFilter(delegate (object x) { return !((TurtleIssue)x).IsPullRequest; });
             }
-            var combfilter = new CompositeAllFilter(new List<IModelFilter> { tmfilter, prfilter });
+            var combfilter = new CompositeAllFilter(new List<IModelFilter> { tmfilter, prfilter, openedfilter, assignedfilter, labelFilter, milestoneFilter });
 
             objectListView1.ModelFilter = combfilter;
-            objectListView1.DefaultRenderer = new HighlightTextRenderer(tmfilter);
+            var renderer = new HighlightTextRenderer(tmfilter);
+            renderer.Column = olvColumn2;
+            objectListView1.DefaultRenderer = renderer;
         }
 
         private void BtnReload_Click(object sender, EventArgs e)
@@ -197,6 +221,10 @@ namespace TurtleHub
         {
             TxtSearch.Text = "";
             TxtSearch.Enabled = false;
+            CbOpened.Enabled = false;
+            CbAssigned.Enabled = false;
+            TxtLabels.Enabled = false;
+            CbMilestone.Enabled = false;
             BtnReload.Enabled = false;
             workStatus.Visible = false;
             statusLabel.ForeColor = Color.Red;
@@ -221,6 +249,32 @@ namespace TurtleHub
         private void checkBoxShowPrs_CheckedChanged(object sender, EventArgs e)
         {
             ShowIssues();
+        }
+
+        private void CbOpened_TextChanged(object sender, EventArgs e)
+        {
+            ShowIssues();
+            Settings.Default.LastOpened = CbOpened.Text;
+            Settings.Default.Save();
+        }
+
+        private void CbAssigned_TextChanged(object sender, EventArgs e)
+        {
+            ShowIssues();
+            Settings.Default.LastAssignee = CbAssigned.Text;
+            Settings.Default.Save();
+        }
+
+        private void TxtLabels_TextChanged(object sender, EventArgs e)
+        {
+            ShowIssues();
+        }
+
+        private void CbMilestone_TextChanged(object sender, EventArgs e)
+        {
+            ShowIssues();
+            Settings.Default.LastMilestone = CbMilestone.Text;
+            Settings.Default.Save();
         }
     }
 }
